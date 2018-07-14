@@ -12,7 +12,7 @@ services:
   #     - /var/run/docker.sock:/var/run/docker.sock #So that Traefik can listen to the Docker events
 
   tremage:
-    image: 'abiosoft/caddy'
+    image: 'test-caddy'
     labels:
       - "traefik.backend=tremage"
       - "traefik.frontend.rule=Host:www.tremage.com,tremage.com"
@@ -30,7 +30,7 @@ services:
       - proxy
 
   c2ostudio:
-    image: 'abiosoft/caddy'
+    image: 'test-caddy'
     labels:
       - "traefik.backend=c2ostudio"
       - "traefik.frontend.rule=Host:www.c2o.studio,c2o.studio"

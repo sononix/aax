@@ -28,7 +28,7 @@ onDemand = false
 caServer = "https://acme-staging-v02.api.letsencrypt.org/directory"
 
 [acme.httpChallenge]
-entryPoint = "http"
+provider = "route53"
 
 ################################################################
 # Web configuration backend

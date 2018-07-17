@@ -12,7 +12,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock #So that Traefik can listen to the Docker events
       - $PWD/traefik.toml:/traefik.toml
     networks:
-      - traefik_webgateway
+      - proxy
     restart:
       always
   tremage:

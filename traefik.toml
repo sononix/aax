@@ -10,8 +10,6 @@ defaultEntryPoints = ["http", "https"]
 [entryPoints]
   [entryPoints.http]
   address = ":80"
-  [entryPoints.http.redirect]
-    entryPoint = "https"
   [entryPoints.https]
   address = ":443"
     [entryPoints.https.tls]
@@ -24,11 +22,14 @@ email = "admin@nua.media"
 Storage = "acme.json"
 entryPoint = "https"
 onHostRule = true
-onDemand = false
+onDemand = true
 caServer = "https://acme-staging-v02.api.letsencrypt.org/directory"
 
 [acme.httpChallenge]
-provider = "route53"
+  entryPoint = "http"
+  provider = "route53"
+  delayBeforeCheck = 0
+
 
 ################################################################
 # Web configuration backend

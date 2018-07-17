@@ -30,10 +30,10 @@ services:
       - $PWD/.caddy:/etc/caddycerts
     environment:
       - CADDYPATH=/etc/caddycerts
-      - AWS_ACCESS_KEY_ID=AKIAJ6ALWSVFS5SJM53Q,N1hskRLI
-      - AWS_SECRET_ACCESS_KEY=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
-      - AWS_REGION=eu-west-1
-      - AWS_HOSTED_ZONE_ID=Z24PUNH2YXXCTP
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
+      - AWS_REGION
+      - AWS_HOSTED_ZONE_ID
       - ACME_AGREE=true
     networks:
       - proxy

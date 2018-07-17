@@ -53,7 +53,8 @@ domain = "docker.localhost"
 
 # Enable watch docker changes
 watch = true
-exposedByDefault = false
+exposedByDefault = true
+usebindportip = true
 
 ################################################################
 # Web configuration backend

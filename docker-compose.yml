@@ -26,7 +26,7 @@ services:
       - "traefik.port=443"
     volumes:
       - $PWD/Caddyfile:/etc/Caddyfile
-      - $PWD/nuaco:/srv
+      - $PWD/tremage:/srv
       - $PWD/.caddy:/etc/caddycerts
     environment:
       - CADDYPATH=/etc/caddycerts

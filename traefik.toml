@@ -25,7 +25,7 @@ Storage = "acme.json"
 entryPoint = "https"
 onHostRule = true
 onDemand = false
-caServer = "https://acme-staging-v02.api.letsencrypt.org/directory"
+# caServer = "https://acme-staging-v02.api.letsencrypt.org/directory"
 
 [acme.httpChallenge]
 entryPoint = "http"
@@ -69,7 +69,7 @@ watch = true
   [frontends.frontend1]
   backend = "tremage"
     [frontends.frontend1.routes.test_1]
-    rule = "Host:www.nua.co,nua.co"
+    rule = "Host:www.tremage.com,tremage.com"
 [frontends.frontend2]
   backend = "c2ostudio"
     [frontends.frontend2.routes.test_2]

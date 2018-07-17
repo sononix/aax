@@ -25,7 +25,7 @@ Storage = "acme.json"
 entryPoint = "https"
 onHostRule = true
 onDemand = false
-# caServer = "https://acme-staging-v02.api.letsencrypt.org/directory"
+caServer = "https://acme-staging-v02.api.letsencrypt.org/directory"
 
 [acme.httpChallenge]
 entryPoint = "http"
@@ -53,6 +53,7 @@ domain = "nua.media"
 
 # Enable watch docker changes
 watch = true
+exposedByDefault = false
 
 ################################################################
 # Web configuration backend

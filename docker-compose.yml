@@ -1,15 +1,20 @@
 version: "3"
 
-services:
-  # reverse-proxy:
-  #   image: traefik #The official Traefik docker image
-  #   command: --api --docker #Enables the web UI and tells Træfik to listen to docker
-  #   ports:
-  #     - "80:80"     #The HTTP port
-  #     - "8080:8080" #The Web UI (enabled by --api)
-  #     - "443:443"
-  #   volumes:
-  #     - /var/run/docker.sock:/var/run/docker.sock #So that Traefik can listen to the Docker events
+# services:
+#   reverse-proxy:
+#     image: traefik #The official Traefik docker image
+#     command: --web --docker.domain=nua.media --logLevelDEBUG  # This log level can also be INFO
+#     ports:
+#       - "80:80"     #The HTTP port
+#       - "8080:8080" #The Web UI (enabled by --api)
+#       - "443:443"
+#     volumes:
+#       - /var/run/docker.sock:/var/run/docker.sock #So that Traefik can listen to the Docker events
+#       - $PWD/traefik.toml:/traefik.toml
+#     networks:
+#       - traefik_webgateway
+#     restart:
+#       always
 
   tremage:
     image: 'test-caddy'
@@ -20,35 +25,32 @@ services:
       - "traefik.port=2015"
       - "traefik.port=443"
     volumes:
-      - ./Caddyfile:/etc/Caddyfile
-      - ./nuaco:/srv
-      - ./.caddy:/etc/caddycerts
+      - $PWD/Caddyfile:/etc/Caddyfile
+      - $PWD/nuaco:/srv
+      - $PWD/.caddy:/etc/caddycerts
     environment:
       - CADDYPATH=/etc/caddycerts
     networks:
-      - internal
-      - proxy
-
-  c2ostudio:
-    image: 'test-caddy'
-    labels:
-      - "traefik.backend=c2ostudio"
-      - "traefik.frontend.rule=Host:www.c2o.studio,c2o.studio"
-      - "traefik.docker.network=proxy"
-      - "traefik.port=2015"
-      - "traefik.port=443"
-    volumes:
-      - ./Caddyfilec2o:/etc/Caddyfile
-      - ./c2ostudio:/srv
-      - ./.caddy:/etc/caddycerts
-    environment:
-      - CADDYPATH=/etc/caddycerts
-    networks:
-      - internal
-      - proxy
-
-networks:
-  proxy:
-    external: true
-  internal:
-    external: false
+      - traefik_webgateway
+#
+#   c2ostudio:
+#     image: 'test-caddy'
+#     labels:
+#       - "traefik.backend=c2ostudio"
+#       - "traefik.frontend.rule=Host:www.c2o.studio,c2o.studio"
+#       - "traefik.docker.network=proxy"
+#       - "traefik.port=2015"
+#       - "traefik.port=443"
+#     volumes:
+#       - ./Caddyfilec2o:/etc/Caddyfile
+#       - ./c2ostudio:/srv
+#       - ./.caddy:/etc/caddycerts
+#     environment:
+#       - CADDYPATH=/etc/caddycerts
+#     networks:
+#       - traefik_webgateway
+#
+# networks:
+#   web:
+#     external:
+#       name: traefik_webgateway

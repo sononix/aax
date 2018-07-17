@@ -1,20 +1,20 @@
 version: "3"
 
 services:
-  # reverse-proxy:
-  #   image: traefik #The official Traefik docker image
-  #   command: --api --logLevel= DEBUG  # This log level can also be INFO
-  #   ports:
-  #     - "80:80"     #The HTTP port
-  #     - "8080:8080" #The Web UI (enabled by --api)
-  #     - "443:443"
-  #   volumes:
-  #     - /var/run/docker.sock:/var/run/docker.sock #So that Traefik can listen to the Docker events
-  #     - $PWD/traefik.toml:/traefik.toml
-  #   networks:
-  #     - proxy
-  #   restart:
-  #     always
+  reverse-proxy:
+    image: traefik #The official Traefik docker image
+    command: --api --logLevel= DEBUG  # This log level can also be INFO
+    ports:
+      - "80:80"     #The HTTP port
+      - "8080:8080" #The Web UI (enabled by --api)
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock #So that Traefik can listen to the Docker events
+      - $PWD/traefik.toml:/traefik.toml
+    networks:
+      - proxy
+    restart:
+      always
   tremage:
     image: 'test-caddy'
     labels:

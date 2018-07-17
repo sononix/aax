@@ -21,7 +21,7 @@ services:
       - "traefik.backend=tremage"
       - "traefik.frontend.rule=Host:www.tremage.com,tremage.com"
       - "traefik.docker.network=proxy"
-      - "traefik.frontend.entryPoints: https"
+      - "traefik.frontend.entryPoints: http,https"
       - "traefik.port=2015"
       - "traefik.port=443"
     volumes:

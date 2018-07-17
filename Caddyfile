@@ -1,6 +1,3 @@
 nua.media, www.nua.media {
     root /srv
-    tls admin@nua.media {
-      dns route53
-    }
 }

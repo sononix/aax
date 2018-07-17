@@ -1,3 +1,6 @@
-c2o.studio, www.c2o.studio {
+tremage.com, www.tremage.com {
     root /srv
+    tls admin@tremage.com {
+      dns route53
+    }
 }

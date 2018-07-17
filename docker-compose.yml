@@ -25,7 +25,7 @@ services:
       - "traefik.port=2015"
       - "traefik.port=443"
     volumes:
-      - $PWD/Caddyfile:/etc/Caddyfile
+      - $PWD/Caddyfilec2o:/etc/Caddyfile
       - $PWD/tremage:/srv
       - $PWD/.caddy:/etc/caddycerts
     environment:

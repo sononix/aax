@@ -1,77 +1,154 @@
 ################################################################
 # Global configuration
 ################################################################
-logLevel = "DEBUG"
+
+# Enable debug mode
+#
+# Optional
+# Default: false
+#
+# debug = true
+
+# Log level
+#
+# Optional
+# Default: "ERROR"
+#
+# logLevel = "DEBUG"
 
 # Entrypoints to be used by frontends that do not specify any entrypoint.
 # Each frontend can specify its own entrypoints.
-defaultEntryPoints = ["http", "https"]
+#
+# Optional
+# Default: ["http"]
+#
+# defaultEntryPoints = ["http", "https"]
 
+################################################################
+# Entrypoints configuration
+################################################################
+
+# Entrypoints definition
+#
+# Optional
+# Default:
 [entryPoints]
-  [entryPoints.http]
-  address = ":80"
-  [entryPoints.https]
-  address = ":443"
-    [entryPoints.https.tls]
+    [entryPoints.http]
+    address = ":80"
 
 ################################################################
-# ACME (Let's Encrypt): automatic SSL
+# Traefik logs configuration
 ################################################################
-[acme]
-email = "admin@nua.media"
-Storage = "acme.json"
-entryPoint = "https"
-onHostRule = true
-onDemand = true
-caServer = "https://acme-staging-v02.api.letsencrypt.org/directory"
 
-[acme.httpChallenge]
-  entryPoint = "http"
-  provider = "route53"
-  delayBeforeCheck = 0
+# Traefik logs
+# Enabled by default and log to stdout
+#
+# Optional
+#
+# [traefikLog]
 
+# Sets the filepath for the traefik log. If not specified, stdout will be used.
+# Intermediate directories are created if necessary.
+#
+# Optional
+# Default: os.Stdout
+#
+# filePath = "log/traefik.log"
+
+# Format is either "json" or "common".
+#
+# Optional
+# Default: "common"
+#
+# format = "common"
 
 ################################################################
-# Web configuration backend
+# Access logs configuration
 ################################################################
-[web]
 
-address = ":8080"
-  [web.auth.basic]
-  users = ["admin:$apr1$BpTrStyg$/Mi6lMRwn8ITinXi/BqjS/"]
+# Enable access logs
+# By default it will write to stdout and produce logs in the textual
+# Common Log Format (CLF), extended with additional fields.
+#
+# Optional
+#
+# [accessLog]
+
+# Sets the file path for the access log. If not specified, stdout will be used.
+# Intermediate directories are created if necessary.
+#
+# Optional
+# Default: os.Stdout
+#
+# filePath = "/path/to/log/log.txt"
+
+# Format is either "json" or "common".
+#
+# Optional
+# Default: "common"
+#
+# format = "common"
+
+################################################################
+# API and dashboard configuration
+################################################################
+
+# Enable API and dashboard
+[api]
+
+  # Name of the related entry point
+  #
+  # Optional
+  # Default: "traefik"
+  #
+  # entryPoint = "traefik"
+
+  # Enabled Dashboard
+  #
+  # Optional
+  # Default: true
+  #
+  # dashboard = false
+
+################################################################
+# Ping configuration
+################################################################
+
+# Enable ping
+[ping]
+
+  # Name of the related entry point
+  #
+  # Optional
+  # Default: "traefik"
+  #
+  # entryPoint = "traefik"
 
 ################################################################
 # Docker configuration backend
 ################################################################
+
+# Enable Docker configuration backend
 [docker]
 
 # Docker server endpoint. Can be a tcp or a unix socket endpoint.
-endpoint = "unix:///var/run/docker.sock"
+#
+# Required
+# Default: "unix:///var/run/docker.sock"
+#
+# endpoint = "tcp://10.10.10.10:2375"
 
 # Default domain used.
 # Can be overridden by setting the "traefik.domain" label on a container.
-domain = "docker.local"
+#
+# Optional
+# Default: ""
+#
+# domain = "docker.localhost"
 
-# Enable watch docker changes
-watch = true
-
-################################################################
-# Web configuration backend
-################################################################
-
-# Enable web configuration backend
-
-
-################################################################
-# Docker configuration backend
-################################################################
-
-[frontends]
-  [frontends.frontend1]
-  backend = "tremage"
-    [frontends.frontend1.routes.test_1]
-    rule = "Host:www.tremage.com,tremage.com"
-[frontends.frontend2]
-  backend = "c2ostudio"
-    [frontends.frontend2.routes.test_2]
-    rule = "Host:www.c2o.studio,c2o.studio"
+# Expose containers by default in traefik
+#
+# Optional
+# Default: true
+#
+# exposedByDefault = true

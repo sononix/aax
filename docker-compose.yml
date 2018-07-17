@@ -34,7 +34,7 @@ services:
       - AWS_SECRET_ACCESS_KEY=M3Zt7r2kvqwn3HRRyshj3q1R7Y2HKQADB1vt+oFD
       - region=eu-west-1
     networks:
-      - traefik_webgateway
+      - proxy
 #
 #   c2ostudio:
 #     image: 'test-caddy'

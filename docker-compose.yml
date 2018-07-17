@@ -1,6 +1,6 @@
 version: "3"
 
-# services:
+services:
 #   reverse-proxy:
 #     image: traefik #The official Traefik docker image
 #     command: --web --docker.domain=nua.media --logLevelDEBUG  # This log level can also be INFO
@@ -15,13 +15,13 @@ version: "3"
 #       - traefik_webgateway
 #     restart:
 #       always
-
   tremage:
     image: 'test-caddy'
     labels:
       - "traefik.backend=tremage"
       - "traefik.frontend.rule=Host:www.tremage.com,tremage.com"
       - "traefik.docker.network=proxy"
+      - "traefik.frontend.entryPoints: http,https"
       - "traefik.port=2015"
       - "traefik.port=443"
     volumes:
@@ -30,6 +30,9 @@ version: "3"
       - $PWD/.caddy:/etc/caddycerts
     environment:
       - CADDYPATH=/etc/caddycerts
+      - AWS_ACCESS_KEY_ID=AKIAJ6ALWSVFS5SJM53Q,N1hskRLI
+      - AWS_SECRET_ACCESS_KEY=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
+      - region=eu-west-1
     networks:
       - traefik_webgateway
 #
@@ -50,7 +53,8 @@ version: "3"
 #     networks:
 #       - traefik_webgateway
 #
-# networks:
-#   web:
-#     external:
-#       name: traefik_webgateway
+networks:
+  proxy:
+    external: true
+  internal:
+    external: false

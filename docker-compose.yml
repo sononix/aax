@@ -3,7 +3,7 @@ version: "3"
 services:
   reverse-proxy:
     image: traefik #The official Traefik docker image
-    command: --api --logLevel= DEBUG --docker.watch --acme --acme.entryPoint=https --entryPoints='Name:http Address::80' --entryPoints='Name:https Address::443 TLS' --defaultentrypoints=http,https --acme.email=admin@nua.media # This log level can also be INFO
+    command: --api --logLevel= DEBUG --docker.watch --acme --acme.storage=/etc/traefik/acme/acme.json --acme.entryPoint=https --entryPoints='Name:http Address::80' --entryPoints='Name:https Address::443 TLS' --defaultentrypoints=http,https --acme.email=admin@nua.media # This log level can also be INFO
     ports:
       - "80:80"     #The HTTP port
       - "8080:8080" #The Web UI (enabled by --api)

@@ -21,7 +21,7 @@ defaultEntryPoints = ["http", "https"]
 ################################################################
 [acme]
 email = "admin@nua.media"
-storage = "/etc/traefik/acme/acme.json"
+storage = "acme.json"
 # used for staging
 caServer = "https://acme-staging-v02.api.letsencrypt.org/directory"
 acmeLogging = true

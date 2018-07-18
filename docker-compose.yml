@@ -2,7 +2,7 @@ version: "3"
 
 services:
   reverse-proxy:
-    image: traefik #The official Traefik docker image
+    image: traefik:v1.7 #The official Traefik docker image
     command: --api --docker --docker.domain=nua.media --logLevel=DEBUG # This log level can also be INFO
     ports:
       - "80:80"     #The HTTP port

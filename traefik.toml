@@ -29,7 +29,7 @@ entryPoint = "https"
 
   [acme.dnsChallenge]
   provider = "route53" # DNS Provider name (cloudflare, OVH, gandi...)
-  delayBeforeCheck = 120
+  delayBeforeCheck = 1
 
 [[acme.domains]]
   main = "nua.media"

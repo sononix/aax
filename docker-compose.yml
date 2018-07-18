@@ -46,7 +46,7 @@ services:
   #     - AWS_HOSTED_ZONE_ID
   #     - ACME_AGREE=true
   #   networks:
-      - proxy
+      # - proxy
 #
 #   c2ostudio:
 #     image: 'test-caddy'

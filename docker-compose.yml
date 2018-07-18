@@ -3,7 +3,7 @@ version: "3"
 services:
   reverse-proxy:
     image: traefik #The official Traefik docker image
-    command: --api --logLevel=DEBUG --docker.watch --acme --acme.storage=acme.json --acme.entryPoint=https --entryPoints='Name:http Address::80' --entryPoints='Name:https Address::443 TLS' --defaultentrypoints=http,https --acme.email=admin@nua.media # This log level can also be INFO
+    command: --api --docker --docker.domain=nua.media.local --logLevel=DEBUG # This log level can also be INFO
     ports:
       - "80:80"     #The HTTP port
       - "8080:8080" #The Web UI (enabled by --api)
@@ -13,6 +13,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock #So that Traefik can listen to the Docker events
       - $PWD/traefik.toml:/traefik.toml
+      - $PWD/acme.json:/acme.json
     environment:
       - CADDYPATH=/etc/caddycerts
       - AWS_ACCESS_KEY_ID
@@ -26,29 +27,29 @@ services:
     restart:
       always
 
-  tremage:
-    image: 'test-caddy'
-    labels:
-      - "traefik.backend=tremage"
-      - "traefik.frontend.rule=Host:www.tremage.com,tremage.com"
-      - "traefik.docker.network=proxy"
-      - "traefik.frontend.entryPoints: http,https"
-      - "traefik.port=2015"
-      - "traefik.port=443"
-    volumes:
-      - $PWD/Caddyfilec2o:/etc/Caddyfile
-      - $PWD/tremage:/srv
-      - $PWD/.caddy:/etc/caddycerts
-    environment:
-      - CADDYPATH=/etc/caddycerts
-      - AWS_ACCESS_KEY_ID
-      - AWS_SECRET_ACCESS_KEY
-      - AWS_REGION
-      - AWS_HOSTED_ZONE_ID
-      - ACME_AGREE=true
-      - ENABLE_TELEMETRY=false
-    networks:
-      - proxy
+  # tremage:
+  #   image: 'test-caddy'
+  #   labels:
+  #     - "traefik.backend=tremage"
+  #     - "traefik.frontend.rule=Host:www.tremage.com,tremage.com"
+  #     - "traefik.docker.network=proxy"
+  #     - "traefik.frontend.entryPoints: http,https"
+  #     - "traefik.port=2015"
+  #     - "traefik.port=443"
+  #   volumes:
+  #     - $PWD/Caddyfilec2o:/etc/Caddyfile
+  #     - $PWD/tremage:/srv
+  #     - $PWD/.caddy:/etc/caddycerts
+  #   environment:
+  #     - CADDYPATH=/etc/caddycerts
+  #     - AWS_ACCESS_KEY_ID
+  #     - AWS_SECRET_ACCESS_KEY
+  #     - AWS_REGION
+  #     - AWS_HOSTED_ZONE_ID
+  #     - ACME_AGREE=true
+  #     - ENABLE_TELEMETRY=false
+  #   networks:
+  #     - proxy
 #
 #   c2ostudio:
 #     image: 'test-caddy'

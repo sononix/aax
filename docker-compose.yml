@@ -26,29 +26,29 @@ services:
     restart:
       always
 
-  # tremage:
-  #   image: 'test-caddy'
-  #   labels:
-  #     - "traefik.backend=tremage"
-  #     - "traefik.frontend.rule=Host:www.tremage.com,tremage.com"
-  #     - "traefik.docker.network=proxy"
-  #     - "traefik.frontend.entryPoints: http,https"
-  #     - "traefik.port=2015"
-  #     - "traefik.port=443"
-  #   volumes:
-  #     - $PWD/Caddyfilec2o:/etc/Caddyfile
-  #     - $PWD/tremage:/srv
-  #     - $PWD/.caddy:/etc/caddycerts
-  #   environment:
-  #     - CADDYPATH=/etc/caddycerts
-  #     - AWS_ACCESS_KEY_ID
-  #     - AWS_SECRET_ACCESS_KEY
-  #     - AWS_REGION
-  #     - AWS_HOSTED_ZONE_ID
-  #     - ACME_AGREE=true
-  #     - ENABLE_TELEMETRY=false
-  #   networks:
-      # - proxy
+  tremage:
+    image: 'test-caddy'
+    labels:
+      - "traefik.backend=tremage"
+      - "traefik.frontend.rule=Host:www.tremage.com,tremage.com"
+      - "traefik.docker.network=proxy"
+      - "traefik.frontend.entryPoints: http,https"
+      - "traefik.port=2015"
+      - "traefik.port=443"
+    volumes:
+      - $PWD/Caddyfilec2o:/etc/Caddyfile
+      - $PWD/tremage:/srv
+      - $PWD/.caddy:/etc/caddycerts
+    environment:
+      - CADDYPATH=/etc/caddycerts
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
+      - AWS_REGION
+      - AWS_HOSTED_ZONE_ID
+      - ACME_AGREE=true
+      - ENABLE_TELEMETRY=false
+    networks:
+      - proxy
 #
 #   c2ostudio:
 #     image: 'test-caddy'

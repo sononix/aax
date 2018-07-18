@@ -21,14 +21,19 @@ defaultEntryPoints = ["http", "https"]
 ################################################################
 [acme]
 email = "admin@nua.media"
-Storage = "acme.json"
+storage = "acme.json"
+caServer = "https://acme-staging-v02.api.letsencrypt.org/directory"
 entryPoint = "https"
-onHostRule = true
-onDemand = false
-# caServer = "https://acme-staging-v02.api.letsencrypt.org/directory"
+  [acme.httpChallenge]
+  entryPoint = "http"
 
-[acme.httpChallenge]
-entryPoint = "http"
+  [acme.dnsChallenge]
+  provider = "route53" # DNS Provider name (cloudflare, OVH, gandi...)
+  delayBeforeCheck = 0
+
+[[acme.domains]]
+  main = "nua.media"
+  sans = ["www.nua.media"]
 
 ################################################################
 # Web configuration backend

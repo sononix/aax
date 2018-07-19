@@ -19,8 +19,8 @@ defaultEntryPoints = ["http", "https"]
       certFile = "/data/nua.media.crt"
       keyFile = "/data/nua.media.key"
       [[entryPoints.https.tls.certificates]]
-      certFile = "/data/certificates/www.nua.media.crt"
-      keyFile = "/data/certificates/www.nua.media.key"
+      certFile = "/ssl/www.nua.media.crt"
+      keyFile = "/ssl/www.nua.media.key"
 
 ################################################################
 # ACME (Let's Encrypt): automatic SSL

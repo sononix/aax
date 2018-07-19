@@ -16,8 +16,8 @@ defaultEntryPoints = ["http", "https"]
   address = ":443"
     [entryPoints.https.tls]
       [[entryPoints.https.tls.certificates]]
-      certFile = "/data/nua.media.crt"
-      keyFile = "/data/nua.media.key"
+      certFile = "/ssl/nua.media.crt"
+      keyFile = "/ssl/nua.media.key"
       [[entryPoints.https.tls.certificates]]
       certFile = "/ssl/www.nua.media.crt"
       keyFile = "/ssl/www.nua.media.key"

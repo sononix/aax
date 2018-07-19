@@ -35,12 +35,12 @@ onDemand = false
 OnHostRule = false
 entryPoint = "https"
 
-[acme.dnsChallenge]
-provider = "route53" # DNS Provider name (cloudflare, OVH, gandi...)
-delayBeforeCheck = 0
-
-[[acme.domains]]
-  main = "*.nua.media"
+# [acme.dnsChallenge]
+# provider = "route53" # DNS Provider name (cloudflare, OVH, gandi...)
+# delayBeforeCheck = 0
+#
+# [[acme.domains]]
+#   main = "*.nua.media"
 
 ################################################################
 # Web configuration backend

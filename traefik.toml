@@ -15,6 +15,9 @@ defaultEntryPoints = ["http", "https"]
   [entryPoints.https]
   address = ":443"
     [entryPoints.https.tls]
+      [[entryPoints.https.tls.certificates]]
+      certFile = "/home/ec2-user/.lego/certificates/nua.media.crt"
+      keyFile = "/home/ec2-user/.lego/certificates/nua.media.key"
 
 ################################################################
 # ACME (Let's Encrypt): automatic SSL

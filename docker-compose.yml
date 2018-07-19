@@ -17,7 +17,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock #So that Traefik can listen to the Docker events
       - $PWD/traefik.toml:/traefik.toml
       - $PWD/acme.json:/etc/traefik/acme.json
-      - $HOME/.lego/certificates:data
+      - data:/data
     environment:
       - AWS_ACCESS_KEY_ID:${AWS_ACCESS_KEY_ID}
       - AWS_SECRET_ACCESS_KEY:${AWS_SECRET_ACCESS_KEY}

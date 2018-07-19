@@ -1,4 +1,4 @@
-version: "3"
+version: "3.6"
 
 services:
   reverse-proxy:
@@ -14,9 +14,6 @@ services:
       - "traefik.docker.network=proxy"
       - "traefik.frontend.entryPoints: http,https"
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock #So that Traefik can listen to the Docker events
-      - $PWD/traefik.toml:/traefik.toml
-      - $PWD/acme.json:/etc/traefik/acme.json
       - type: volume
         source: data
         target: /data
